@@ -50,6 +50,6 @@ class SurveysController < ApplicationController
   end
 
   def strong_params
-    params.require(:survey).permit(:name, :id, { :questions_attributes => [:body, :id, :_destroy] })
+    params.require(:survey).permit(:name, :id, { :questions_attributes => [:body, :id,:type_id, :_destroy] })
   end
 end

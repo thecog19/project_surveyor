@@ -5,8 +5,12 @@
   
 
   <%= survey_builder.fields_for :questions, @questions do |question_field| %>
-    <%= question_field.label :body, 'Question' %>
-    <%= question_field.text_field :body %><br>
+     <%= question_field.collection_select :type_id, Type.all, :id, :description, include_blank: "Question Type"%>
+    
   <% end %>
+
   <%= survey_builder.submit %>
 <% end %>
+
+<!-- planned features: pick question type
+    make multiple questions  -->
