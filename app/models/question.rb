@@ -8,4 +8,8 @@ class Question < ApplicationRecord
   def category_description
     category.description
   end
+
+  def possible_answers_count
+    possible_answers.length
+  end
 end
