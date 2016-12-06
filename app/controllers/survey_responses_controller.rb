@@ -6,6 +6,10 @@ class SurveyResponsesController < ApplicationController
     create_responses_and_associate(@survey)
   end
 
+  def create
+
+  end
+
   private
 
     def create_responses_and_associate(survey)

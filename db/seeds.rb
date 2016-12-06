@@ -26,7 +26,8 @@ module Seeder
       def create_n_questions_for(survey_id, n)
         n.times { Question.create!(body: question_body,
                                    survey_id: survey_id,
-                                   question_type_id: QuestionType.first.id) }
+                                   question_type_id: QuestionType.first.id,
+                                   max_answers: Faker::Number.between(1,2)) }
       end
 
       def create_n_answers_for(question_id, n)

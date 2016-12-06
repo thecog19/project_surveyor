@@ -1,0 +1,22 @@
+<%= question.body %>
+
+<% if question.max_answers > 1 %>
+    <% question.possible_answers.each do |answer| %>
+    <br>
+      <%= f.check_box :submitted_answers %>
+
+      <%= f.label :submitted_answers, answer.body %> 
+    <% end %>
+    <br>
+    <br>
+<% else %> 
+
+  <% question.possible_answers.each do |answer| %>
+    <br>
+      <%= f.radio_button :submitted_answers, answer.id %>
+
+      <%= f.label :submitted_answers, answer.body %> 
+    <% end %>
+    <br>
+    <br>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206220542) do
+ActiveRecord::Schema.define(version: 20161206222705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20161206220542) do
     t.integer  "question_type_id"
     t.integer  "survey_id"
     t.string   "body"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "max_answers"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "max_answers",      default: 1
     t.integer  "required"
   end
 

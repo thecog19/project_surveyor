@@ -11,10 +11,10 @@
     <%= form_for [@survey, @survey_response] do |sr_fields| %>
       <br>
         <% @survey.questions.each do |question|  %>
-          
+           <%= render "multiple_choice_question_form", f: sr_fields, question: question %>
         <% end %>
       
-      <% sr_fields.submit "Submit Answers" %>
+      <%= sr_fields.submit "Submit Answers" %>
     <% end %>
   </div>
 </div>
