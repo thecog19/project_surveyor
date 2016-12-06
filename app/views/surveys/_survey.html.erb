@@ -1,4 +1,4 @@
 
 <li>
-  <%= link_to survey.name, survey_path(survey) %>
+  <%= link_to survey.name, survey_path(survey) %> | <a href="<%= new_survey_survey_response_path(survey) %>" type="button" class="btn btn-primary btn-sm">Take Survey!</a>
 </li>

@@ -22,7 +22,6 @@ class SurveysController < ApplicationController
   end
 
   def update
-    @survey.question_ids = params[:survey][:question_ids] 
     @survey.update(survey_params) ? successful_update : failed_update
   end
 

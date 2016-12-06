@@ -1,4 +1,4 @@
-<% if @survey.questions %>
+<% unless @survey.no_questions? %>
     
   <% if delete %>
     
@@ -6,7 +6,7 @@
         <div class="col-md-8">
           <%= form_for @survey do |f| %>
              <%= f.collection_check_boxes :question_ids, @survey.questions, :id, :body  %>
-             <%= f.submit "delete selected questions" %>
+             <%= f.submit "Keep selected questions" %>
            <% end %>
         </div>
       </div>
@@ -27,5 +27,5 @@
         <span>There aren't any questons for this survey yet</span>
       </div>
     </div>
-    
+
 <% end %>
