@@ -5,31 +5,31 @@
 
 <div class="row">
   <div class="col-md-4">
-    <%= form_for @question, url: { action: :update } do |f| %>
-      <%= f.label :body %>
+    <%= form_for @question, url: { action: :update } do |question_fields| %>
+      <%= question_fields.label :body %>
       <br>
-      <%= f.text_field :body %>
-      <br>
-      <br>
-      <%= f.check_box :required %>
-      <%= f.label :required %>
+      <%= question_fields.text_field :body %>
       <br>
       <br>
-      <%= f.label :max_answers, "Number of accepted answers" %>
+      <%= question_fields.check_box :required %>
+      <%= question_fields.label :required %>
       <br>
-      <%= f.number_field :max_answers, min: 1, max: @question.possible_answers_count %>
+      <br>
+      <%= question_fields.label :max_answers, "Number of accepted answers" %>
+      <br>
+      <%= question_fields.number_field :max_answers, min: 1, max: @question.possible_answers_count %>
       <br>
       <br>
-      <% @question.possible_answers.each do |option| %>
-        <%= fields_for option do |option_field|%>
-          <%= option_field.label :body, "Answer Text" %>
+        <%= question_fields.fields_for :possible_answers do |pa_fields|%>
+
+          <%=pa_fields.label :body, "Answer Text" %>
           <br>
-          <%= option_field.text_field :body, size: 65%>
+          <%= pa_fields.text_field :body, size: 65%>
           <br> <br>
+          
         <% end %>
-      <% end %>
       <br>
-      <%= f.submit "Update Question" %>
+      <%= question_fields.submit "Update Question" %>
     <% end %>
   </div>
 </div>

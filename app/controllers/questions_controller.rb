@@ -48,7 +48,8 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:body, :survey_id, :question_type_id,
-                                       :max_answers, :required)
+                                       :max_answers, :required, 
+                                       possible_answers_attributes: [:body, :id])
     end
 
     def find_question

@@ -25,6 +25,7 @@
       <%= f.text_area :body, cols: 70, rows: 2 %>
       <br>
       <br>
+      <%= f.hidden_field :survey_id, value: params[:survey_id] %>
       <%= f.submit "Continue Creating Question" %>
     <% end %>
   </div>
