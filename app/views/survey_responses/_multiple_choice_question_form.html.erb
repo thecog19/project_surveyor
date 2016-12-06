@@ -1,22 +1,21 @@
-<%= question.body %>
+
+<%= question = f.object.question %>
 
 <% if question.max_answers > 1 %>
-    <% question.possible_answers.each do |answer| %>
+  <% question.possible_answers.each do |answer| %>
     <br>
-      <%= f.check_box :submitted_answers %>
-
-      <%= f.label :submitted_answers, answer.body %> 
-    <% end %>
-    <br>
-    <br>
-<% else %> 
+    <%= f.check_box :answers %>
+    <%= f.label :answers, answer.body %>
+  <% end %>
+  <br>
+  <br>
+<% else %>
 
   <% question.possible_answers.each do |answer| %>
     <br>
-      <%= f.radio_button :submitted_answers, answer.id %>
-
-      <%= f.label :submitted_answers, answer.body %> 
-    <% end %>
-    <br>
-    <br>
+    <%= f.radio_button :answers, answer.id %>
+    <%= f.label :answers, answer.body %>
+  <% end %>
+  <br>
+  <br>
 <% end %>

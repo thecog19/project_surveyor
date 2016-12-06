@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20161206222705) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "survey_response_id"
-    t.integer  "possible_answer_id"
   end
 
   create_table "question_responses_answers", force: :cascade do |t|
