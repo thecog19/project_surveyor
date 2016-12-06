@@ -1,6 +1,7 @@
-<h3>Survey <%= @survey.id %></h3>
 
-<h4><%= @survey.name %></h4>
+<h1><%= @survey.name %></h1>
 
-<%= link_to "edit!", edit_survey_path(@survey.id) %>
-<%= link_to "Add Questions", new_survey_question_path(@survey) %>
+<h3><%= @survey.description %></h3>
+
+<%= link_to "Add Questions", new_survey_question_path(@survey) %> |
+<%= link_to "Edit", edit_survey_path(@survey.id) %>

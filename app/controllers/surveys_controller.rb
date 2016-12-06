@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  before_action :find_survey, except: [:index, :new, :create]
 
   def index
     @surveys = Survey.all
@@ -6,49 +7,64 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
-    @questions = Question.new
   end
 
   def create
-    @survey = Survey.new(strong_params)
-    if @survey.save
-      flash[:success] = "Survey Created"
-      redirect_to @survey
-    else
-      flash.now[:danger] = "Submission Failed"
-      render "new"
-    end
+    @survey = Survey.new(survey_params)
+    @survey.save ? succesful_create : failed_create
   end
 
   def show
-    @survey = Survey.find(params[:id])
   end
 
   def edit
-    @survey = Survey.find(params[:id])
     @questions = @survey.questions.all
   end
 
   def update
-    @survey = Survey.find(params[:id])
-    if @survey.update(strong_params)
-      flash[:success] = "Survey Updated"
-      redirect_to @survey
-    else
-      flash.now[:danger] = "Update Failed"
-      render "edit"
-    end
+    @survey.update(survey_params) ? successful_update : failed_update
   end
 
   def destroy
-    @survey = Survey.find(params[:id])
-    @survey.destroy
-    flash[:success] = "Survey Destroyed"
-    redirect_to surveys_path
+    @survey.destroy ? successful_destroy : failed_destroy
   end
 
   private
-    def strong_params
+    def survey_params
       params.require(:survey).permit(:name, :id, :description)
+    end
+
+    def find_survey
+      @survey = Survey.find(params[:id])
+    end
+
+    def succesful_create
+      flash[:success] = "#{ @survey.name } Created"
+      redirect_to @survey
+    end
+
+    def failed_create
+      flash.now[:danger] = @survey.errors.full_messages
+      render :new
+    end
+
+    def successful_update
+      flash[:success] = "#{ @survey.name } Updated"
+      redirect_to @survey
+    end
+
+    def failed_update
+      flash.now[:danger] = @survey.errors.full_messages
+      render :edit
+    end
+
+    def successful_destroy
+      flash[:success] = "#{ @survey.name } Destroyed"
+      redirect_to surveys_url
+    end
+
+    def failed_destroy
+      flash[:danger] = @survey.errors.full_messages
+      redirect_to surveys_url
     end
 end
