@@ -13,6 +13,7 @@
       <%= sr_fields.fields_for :submitted_answers do |sa_fields| %>
           <%= render "multiple_choice_question_form", f: sa_fields %>
       <% end %>
+      <%= hidden_field_tag :survey_id, @survey.id %>
       <%= sr_fields.submit "Submit Answers" %>
     <% end %>
   </div>
