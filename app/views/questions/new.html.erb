@@ -10,6 +10,8 @@
       <br>
       <%= f.collection_select :question_type_id, QuestionType.all, :id, :description, include_blank: true %>
       <br>
+      <%= label_tag :options, "How many options?" %>
+      <%= number_field_tag :options %>
       <br>
       <%= f.submit "Continue Creating Question" %>
     <% end %>

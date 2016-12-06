@@ -6,12 +6,19 @@
 <div class="row">
   <div class="col-md-4">
     <%= form_for @question, url: { action: :update } do |f| %>
-      <%= f.label :question_type_id %>
-      <br>
-      <%= f.collection_select :question_type_id, QuestionType.all, :id, :description, include_blank: true %>
-      <br>
-      <br>
-      <%= f.submit "Continue Creating Question" %>
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+      <br> <br> <br>
+      <% @question.possible_answers.each do |option| %>
+
+        <%= fields_for option do |option_field|%>
+          <%= option_field.label :body, "Option Type" %>
+          <%= option_field.text_field :body %>
+          <br> <br>
+
+        <% end %>
+      <% end %>
+      <%= f.submit "Create Options" %>
     <% end %>
   </div>
 </div>

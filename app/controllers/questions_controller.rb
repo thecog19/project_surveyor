@@ -10,11 +10,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    cookies[:options] = params[:options]
     @question = Question.new(question_params)
     @question.save ? successful_create : failed_create
   end
 
   def edit
+    cookies[:options].to_i.times do 
+      @question.possible_answers.build
+    end
+    cookies[:options] = 0
   end
 
   def update
@@ -23,7 +28,7 @@ class QuestionsController < ApplicationController
   private
     def successful_create
       flash[:success] = ["Question Created"]
-      redirect_to edit_survey_question_path(@question, params[:survey_id])
+      redirect_to edit_survey_question_path(params[:survey_id], @question)
     end
 
     def failed_create

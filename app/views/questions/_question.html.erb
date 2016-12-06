@@ -1,5 +1,6 @@
 
 <li>
-  <%= question.type %>
+  <%= question.category_description %>
   <%= question.body %>
+  <ul><%= render question.possible_answers %></ul>
 </li>
