@@ -1,3 +1,3 @@
 class Type < ApplicationRecord
-  has_many :question
+  has_many :questions
 end
