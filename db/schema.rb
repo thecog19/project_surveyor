@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206172434) do
+ActiveRecord::Schema.define(version: 20161206220542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,19 @@ ActiveRecord::Schema.define(version: 20161206172434) do
   create_table "question_responses", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "user_id"
-    t.text     "response"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "survey_response_id"
+    t.integer  "possible_answer_id"
+  end
+
+  create_table "question_responses_answers", force: :cascade do |t|
+    t.integer  "question_response_id"
+    t.integer  "possible_answer_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["possible_answer_id"], name: "index_question_responses_answers_on_possible_answer_id", using: :btree
+    t.index ["question_response_id"], name: "index_question_responses_answers_on_question_response_id", using: :btree
   end
 
   create_table "question_types", force: :cascade do |t|
@@ -68,4 +77,6 @@ ActiveRecord::Schema.define(version: 20161206172434) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "question_responses_answers", "possible_answers"
+  add_foreign_key "question_responses_answers", "question_responses"
 end
