@@ -1,11 +1,8 @@
 
-<% unless @survey.empty? %>
-  <% @survey.each do |survey| %>
-    <%= survey.name %>
-    <%= link_to "Edit survey!", edit_survey_path(survey.id) %>
-    <%= link_to "Destroy survey!", survey_path(survey.id), method: "delete" %>  <br>
-  <% end %>
+<% unless @surveys.empty? %>
+  <ul>
+    <%= render @surveys %>
+  </ul>
 <% else %>
   <p> No Surveys! <%= link_to "Create one!", new_survey_path %> </p>
-  
 <% end %>

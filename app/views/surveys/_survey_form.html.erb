@@ -1,0 +1,10 @@
+
+<%= form_for @survey do |survey_builder| %>
+  <%= survey_builder.label :name %>
+  <%= survey_builder.text_field :name %><br>
+
+  <%= survey_builder.label :description %>
+  <%= survey_builder.text_area :description %><br>
+
+  <%= survey_builder.submit %>
+<% end %>

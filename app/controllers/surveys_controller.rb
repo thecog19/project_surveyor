@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
 
   def index
-    @survey = Survey.all
+    @surveys = Survey.all
   end
 
   def new
