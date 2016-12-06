@@ -35,6 +35,6 @@
   <div class="col-md-8">
     <h3>Other Survey Questions</h3>
     <% @survey = Survey.find(params[:survey_id]) %>
-    <%= render "surveys/survey_questions" %>
+    <%= render "surveys/survey_questions", delete: false %>
   </div>
 </div>

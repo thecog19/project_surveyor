@@ -1,16 +1,31 @@
-
 <% if @survey.questions %>
+    
+  <% if delete %>
+    
+      <div class="row">
+        <div class="col-md-8">
+          <%= form_for @survey do |f| %>
+             <%= f.collection_check_boxes :question_ids, @survey.questions, :id, :body  %>
+             <%= f.submit "delete selected questions" %>
+           <% end %>
+        </div>
+      </div>
+      
+  <% end %>
+
   <div class="row">
-    <div class="col-md-8">
-      <ul>
-        <%= render @survey.questions %>
-      </ul>
+      <div class="col-md-8">
+        <ul>
+          <%= render @survey.questions %>
+        </ul>
+      </div>
     </div>
-  </div>
-<% else %>
-  <div class="row">
-    <div class="col-md-4">
-      <span>There aren't any questons for this survey yet</span>
+  <% else %>
+
+    <div class="row">
+      <div class="col-md-4">
+        <span>There aren't any questons for this survey yet</span>
+      </div>
     </div>
-  </div>
+    
 <% end %>

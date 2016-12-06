@@ -22,6 +22,7 @@ class SurveysController < ApplicationController
   end
 
   def update
+    @survey.question_ids = params[:survey][:question_ids] 
     @survey.update(survey_params) ? successful_update : failed_update
   end
 
@@ -61,7 +62,7 @@ class SurveysController < ApplicationController
     end
 
     def survey_params
-      params.require(:survey).permit(:name, :id, :description)
+      params.require(:survey).permit(:name, :id, :description, question_ids: [])
     end
 
     def find_survey
