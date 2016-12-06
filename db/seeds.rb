@@ -7,7 +7,7 @@ module Seeder
     end
 
     def generate_question_types(n)
-      n.times { Type.create(description: "Multiple Choice") }
+      n.times { QuestionType.create(description: "Multiple Choice") }
     end
 
     def generate_questions(survey_ids, questions_per)
@@ -27,7 +27,7 @@ module Seeder
         multiple_choice_type_id = 1
         n.times { Question.create(body: question_body,
                                   survey_id: survey_id,
-                                  type_id: multiple_choice_type_id) }
+                                  question_type_id: multiple_choice_type_id) }
       end
 
       def create_n_answers_for(question_id, n)
