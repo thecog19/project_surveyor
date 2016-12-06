@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-8">
     <h1><%= @survey.name %></h1>
@@ -8,7 +9,11 @@
 <div class="row">
   <div class="col-md-8">
     <%= form_for [@survey, @survey_response] do |sr_fields| %>
-
+      <br>
+      <%= sr_fields.fields_for :submitted_answers do |sa_fields| %>
+        <%= @survey_response.submitted_answers.to_a %>
+      <% end %>
+      <% sr_fields.submit "Submit Answers" %>
     <% end %>
   </div>
 </div>
