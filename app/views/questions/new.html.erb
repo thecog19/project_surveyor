@@ -1,0 +1,4 @@
+
+<%= form_for @question do |f| %>
+  <%= f.collection_select :type_id, Type.all, :id, :description, include_blank: "Question Type"%>
+<% end %>

@@ -3,3 +3,4 @@
 <h4><%= @survey.name %></h4>
 
 <%= link_to "edit!", edit_survey_path(@survey.id) %>
+<%= link_to "Add Questions", new_survey_question_path(@survey) %>

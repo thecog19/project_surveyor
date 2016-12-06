@@ -20,8 +20,6 @@ class SurveysController < ApplicationController
     end
   end
 
- 
-
   def show
     @survey = Survey.find(params[:id])
   end
@@ -49,7 +47,8 @@ class SurveysController < ApplicationController
     redirect_to surveys_path
   end
 
-  def strong_params
-    params.require(:survey).permit(:name, :id, { :questions_attributes => [:body, :id,:type_id, :_destroy] })
-  end
+  private
+    def strong_params
+      params.require(:survey).permit(:name, :id, :description)
+    end
 end
