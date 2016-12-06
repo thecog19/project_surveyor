@@ -1,0 +1,8 @@
+
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to "Add Questions", new_survey_question_path(@survey) %> |
+    <%= link_to "Edit", edit_survey_path(@survey.id) %> |
+    <%= link_to "Delete", survey_path(@survey), method: "delete" %>
+  </div>
+</div>

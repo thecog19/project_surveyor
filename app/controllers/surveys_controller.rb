@@ -30,16 +30,8 @@ class SurveysController < ApplicationController
   end
 
   private
-    def survey_params
-      params.require(:survey).permit(:name, :id, :description)
-    end
-
-    def find_survey
-      @survey = Survey.find(params[:id])
-    end
-
     def succesful_create
-      flash[:success] = "#{ @survey.name } Created"
+      flash[:success] = ["#{ @survey.name } Created"]
       redirect_to @survey
     end
 
@@ -49,7 +41,7 @@ class SurveysController < ApplicationController
     end
 
     def successful_update
-      flash[:success] = "#{ @survey.name } Updated"
+      flash[:success] = ["#{ @survey.name } Updated"]
       redirect_to @survey
     end
 
@@ -59,12 +51,20 @@ class SurveysController < ApplicationController
     end
 
     def successful_destroy
-      flash[:success] = "#{ @survey.name } Destroyed"
+      flash[:success] = ["#{ @survey.name } Destroyed"]
       redirect_to surveys_url
     end
 
     def failed_destroy
       flash[:danger] = @survey.errors.full_messages
       redirect_to surveys_url
+    end
+
+    def survey_params
+      params.require(:survey).permit(:name, :id, :description)
+    end
+
+    def find_survey
+      @survey = Survey.find(params[:id])
     end
 end

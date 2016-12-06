@@ -1,29 +1,41 @@
+
 class QuestionsController < ApplicationController
 
-  before_action :get_question, only: [:edit, :update]
+  before_action :find_question, only: [:edit, :update]
 
   def new
     @question = Question.new
+    #@question_types = QuestionType.all
+    # appearing as nil in view though QuestionType.all returns array there
   end
 
   def create
-
+    @question = Question.new(question_params)
+    @question.save ? successful_create : failed_create
   end
 
   def edit
-
   end
 
   def update
-
   end
 
   private
-  def get_question
-    @question = Question.find(params[:id])
-  end
+    def successful_create
+      flash[:success] = ["Question Created"]
+      redirect_to edit_survey_question_path(@question, params[:survey_id])
+    end
 
-  def strong_params
-    params.require(:question).permit(:body, :survey_id, :type_id) 
-  end
+    def failed_create
+      flash.now[:danger] = @question.errors.full_messages
+      render :new
+    end
+
+    def question_params
+      params.require(:question).permit(:body, :survey_id, :question_type_id)
+    end
+
+    def find_question
+      @question = Question.find(params[:id])
+    end
 end

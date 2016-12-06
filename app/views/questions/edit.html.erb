@@ -1,11 +1,11 @@
 
 <div class="row">
-  <div class="col-md-4"><h2>New Question</h2></div>
+  <div class="col-md-4"><h2>Update Question</h2></div>
 </div>
 
 <div class="row">
   <div class="col-md-4">
-    <%= form_for @question, url: { action: :create } do |f| %>
+    <%= form_for @question, url: { action: :update } do |f| %>
       <%= f.label :question_type_id %>
       <br>
       <%= f.collection_select :question_type_id, QuestionType.all, :id, :description, include_blank: true %>

@@ -1,0 +1,16 @@
+
+<% if @survey.questions %>
+  <div class="row">
+    <div class="col-md-4">
+      <ul>
+        <%= render @survey.questions %>
+      </ul>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-4">
+      <span>There aren't any questons for this survey yet</span>
+    </div>
+  </div>
+<% end %>
