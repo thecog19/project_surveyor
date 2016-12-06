@@ -1,6 +1,6 @@
 
 class QuestionsController < ApplicationController
-  before_action :find_question, only: [:edit, :update]
+  before_action :find_question, only: [:edit, :update, :destroy]
 
   def new
     @question = Question.new
@@ -25,6 +25,10 @@ class QuestionsController < ApplicationController
     @question.update(question_params) ? successful_update : failed_update
   end
 
+  def destroy
+    @question.destroy ? successful_destroy : failed_destroy
+  end
+
   private
     def successful_create
       flash[:success] = ["Question Created"]
@@ -46,9 +50,18 @@ class QuestionsController < ApplicationController
       render :edit
     end
 
+    def successful_destroy
+      flash[:success] = ["Question Deleted"]
+      redirect_to survey_url(@question.survey_id)
+    end
+
+    def failed_destroy
+      render :update
+    end
+
     def question_params
       params.require(:question).permit(:body, :survey_id, :question_type_id,
-                                       :max_answers, :required, 
+                                       :max_answers, :required,
                                        possible_answers_attributes: [:body, :id])
     end
 
