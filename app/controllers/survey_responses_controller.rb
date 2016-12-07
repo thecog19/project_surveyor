@@ -14,7 +14,8 @@ class SurveyResponsesController < ApplicationController
   private
 
     def survey_response_params
-      params.require(:survey_response).permit(:survey_id, submitted_answers_attributes: [:id, :answers])
+      params.require(:survey_response).permit(:survey_id,
+        submitted_answers_attributes: [:id, :answer_ids])
     end
 
     def create_responses_and_associate(survey)
@@ -25,11 +26,11 @@ class SurveyResponsesController < ApplicationController
 
     def successful_create
       flash[:success] = ["Question Created"]
-      redirect_to root
+      redirect_to "root"
     end
 
     def failed_create
-      flash.now[:danger] = @question.errors.full_messages
-      render :new
+      flash.now[:danger] = @survey_response.errors.full_messages
+      redirect_to "root"
     end
 end

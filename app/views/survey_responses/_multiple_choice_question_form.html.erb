@@ -4,20 +4,13 @@
 
 
 <% if question.max_answers > 1 %>
-  <% question.possible_answers.each do |answer| %>
-    <br>
-    <%= f.check_box :answers %>
-    <%= f.label :answers, answer.body %>
-  <% end %>
+  <br>
+  <%= f.collection_check_boxes :answer_ids, question.possible_answers, :id, :body %>
   <br>
   <br>
 <% else %>
-
-  <% question.possible_answers.each do |answer| %>
-    <br>
-    <%= f.radio_button :answers, answer.id %>
-    <%= f.label :answers, answer.body %>
-  <% end %>
+  <br>
+  <%= f.collection_radio_buttons :answer_ids, question.possible_answers, :id, :body  %>
   <br>
   <br>
 <% end %>
